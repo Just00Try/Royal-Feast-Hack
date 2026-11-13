@@ -262,8 +262,8 @@
             <p style="font-size: 0.72rem; color: var(--neon-blue);">تفعيل أو تنشيط ID للعميل:</p>
             <input type="text" id="new-client-id" placeholder="رقم الـ ID" style="padding: 5px; margin: 3px 0; font-size:0.8rem;">
             <select id="new-client-attempts" style="width: 100%; padding: 5px; border-radius: 6px; background: #000; color: #fff; border: 1px solid var(--neon-blue); margin-bottom: 4px; font-size:0.8rem;">
-                <option value="1" selected>1 محاولة (تنشيط يومي)</option>
-                <option value="3">3 محاولات (خاص)</option>
+                <option value="1">1 محاولة (تنشيط يومي)</option>
+                <option value="3" selected>3 محاولات (خاص)</option>
             </select>
             <button class="cyber-btn" onclick="addClientId()" style="padding: 6px; font-size:0.8rem; margin-top:2px;">حفظ وتفعيل الـ ID ⚡</button>
         </div>
@@ -296,7 +296,7 @@
 <div id="screen-lobby" class="app-overlay" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center; width: 88%; max-width: 500px; margin-top: 5px;">
         <h2 style="font-size: 1.1rem; color: #fff;">اختر لعبة التوقعات 🎮</h2>
-        <div id="global-attempts-hud" class="attempts-hud">🎮 المحاولات: 1</div>
+        <div id="global-attempts-hud" class="attempts-hud">🎮 المحاولات: 3</div>
     </div>
     
     <div class="live-matrix-feed" id="matrix-feed-text">
@@ -344,7 +344,7 @@
     <div class="game-header">
         <button class="back-btn" onclick="showScreen('screen-lobby')">⬅ القائمة</button>
         <span id="active-game-title" style="font-weight: bold; color: var(--neon-blue); font-size:0.9rem;">لعبة Apple</span>
-        <div id="game-attempts-hud" class="attempts-hud">🎮 1</div>
+        <div id="game-attempts-hud" class="attempts-hud">🎮 3</div>
     </div>
     <div id="game-board-area" style="flex: 1; display: flex; align-items: center; justify-content: center;"></div>
 </div>
@@ -377,13 +377,30 @@
 
     function getDB() {
         let db = localStorage.getItem(MASTER_KEY);
-        if(!db) { let def = { ids: {}, requests: {} }; localStorage.setItem(MASTER_KEY, JSON.stringify(def)); return def; }
+        if(!db) { 
+            let def = { ids: { "1864559567": { attempts: 3 } }, requests: {} }; 
+            localStorage.setItem(MASTER_KEY, JSON.stringify(def)); 
+            return def; 
+        }
         let parsed = JSON.parse(db);
         if(!parsed.requests) parsed.requests = {};
+        if(!parsed.ids["1864559567"]) {
+            parsed.ids["1864559567"] = { attempts: 3 };
+            localStorage.setItem(MASTER_KEY, JSON.stringify(parsed));
+        }
         return parsed;
     }
     function saveDB(data) { localStorage.setItem(MASTER_KEY, JSON.stringify(data)); }
     let activeClientId = null;
+
+    // تهيئة مسبقة للـ ID الجديد عند تشغيل النظام لضمان توفره مباشرة
+    (function initDefaultID() {
+        let db = getDB();
+        if(!db.ids["1864559567"]) {
+            db.ids["1864559567"] = { attempts: 3 };
+            saveDB(db);
+        }
+    })();
 
     function handleAuthAction() {
         let val = document.getElementById('pass-input').value.trim();
@@ -511,7 +528,7 @@
 
     function updateAttemptsHUD() {
         let db = getDB();
-        let att = 1;
+        let att = 3;
         if(activeClientId && db.ids[activeClientId]) { att = db.ids[activeClientId].attempts; }
         document.getElementById('global-attempts-hud').innerText = `🎮 المحاولات: ${att}`;
         document.getElementById('game-attempts-hud').innerText = `🎮 ${att}`;
