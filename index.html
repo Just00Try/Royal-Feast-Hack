@@ -100,6 +100,15 @@
         }
         .cyber-btn:active { transform: scale(0.98); }
 
+        .guest-btn {
+            width: 100%; padding: 8px; border-radius: 10px;
+            border: 1px solid var(--neon-green);
+            background: rgba(0, 255, 102, 0.08);
+            color: var(--neon-green); font-weight: bold; font-size: 0.8rem;
+            cursor: pointer; margin-top: 6px; transition: 0.2s;
+        }
+        .guest-btn:hover { background: rgba(0, 255, 102, 0.18); }
+
         .legal-disclaimer {
             margin-top: 8px;
             font-size: 0.62rem;
@@ -151,8 +160,39 @@
         }
         .investor-badge i { color: var(--neon-blue); font-size: 0.55rem; }
 
-        .carousel-container { width: 100%; height: 240px; position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
-        .carousel-wheel { width: 190px; height: 220px; position: relative; }
+        /* ستايل بوت الدعم الذكي */
+        .ai-float-btn {
+            position: fixed; bottom: 20px; left: 20px; z-index: 1000;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
+            color: #030712; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; cursor: pointer; box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            border: 2px solid #fff; animation: aiPulse 2s infinite;
+        }
+        @keyframes aiPulse { 0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.6); } 70% { box-shadow: 0 0 0 12px rgba(0, 240, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); } }
+
+        .ai-chat-modal {
+            position: fixed; bottom: 80px; left: 15px; z-index: 1001;
+            width: 90%; max-width: 330px; background: rgba(10, 15, 30, 0.98);
+            border: 2px solid var(--neon-blue); border-radius: 16px;
+            display: none; flex-direction: column; overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+        .ai-header {
+            background: rgba(0, 240, 255, 0.1); padding: 10px 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--neon-blue); font-size: 0.8rem; font-weight: bold; color: var(--neon-blue);
+        }
+        .ai-body { padding: 10px; max-height: 260px; overflow-y: auto; font-size: 0.75rem; display: flex; flex-direction: column; gap: 8px; text-align: right; }
+        .ai-msg { background: rgba(15, 23, 42, 0.9); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.2); line-height: 1.4; color: #cbd5e1; }
+        .ai-msg.bot { border-color: var(--neon-blue); }
+        .ai-msg.user { background: rgba(0, 240, 255, 0.15); color: #fff; text-align: left; align-self: flex-end; }
+        .ai-options { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; }
+        .ai-opt-btn { background: rgba(3, 7, 18, 0.9); border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 8px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; text-align: right; font-weight: bold; transition: 0.2s; }
+        .ai-opt-btn:hover { background: rgba(0, 255, 102, 0.15); }
+
+        .carousel-container { width: 100%; height: 230px; position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
+        .carousel-wheel { width: 190px; height: 210px; position: relative; }
         .carousel-card {
             position: absolute; inset: 0; border-radius: 18px; background: rgba(15, 23, 42, 0.95);
             border: 2px solid var(--neon-blue); display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -181,8 +221,8 @@
 
         .game-screen { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; flex-direction: column; z-index: 50; background: #030712; }
         .game-header { padding: 10px 15px; background: rgba(10, 15, 30, 0.95); border-bottom: 2px solid var(--neon-blue); display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
-        .back-btn { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--neon-blue); background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); font-weight: bold; cursor: pointer; font-size: 0.8rem; }
-        .attempts-hud { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--neon-green); color: var(--neon-green); background: rgba(0, 255, 102, 0.1); font-family: monospace; font-weight: bold; font-size: 0.8rem; }
+        .back-btn { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--neon-blue); background: rgba(0, 240, 255, 0.1); color: var(--neon-blue); font-weight: bold; cursor: pointer; font-size: 0.75rem; }
+        .attempts-hud { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--neon-green); color: var(--neon-green); background: rgba(0, 255, 102, 0.1); font-family: monospace; font-weight: bold; font-size: 0.75rem; }
 
         .grid-5x5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 340px; margin: auto; padding: 12px; background: rgba(10, 15, 30, 0.95); border: 2px solid var(--neon-blue); border-radius: 16px; }
         .grid-cell { height: 46px; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; }
@@ -234,6 +274,7 @@
 
         <input type="password" id="pass-input" placeholder="أدخل الـ ID الخاص بك هنا..." autocomplete="off">
         <button id="submit-btn" class="cyber-btn" onclick="handleAuthAction()">طلب تفعيل التوقعات ⚡</button>
+        <button class="guest-btn" onclick="enterGuestMode()">👁️ جلسة زيارة للمعاينة (استكشاف النظام)</button>
 
         <div class="legal-disclaimer">
             ⚠️ تنبيه: هذه أفضل توقعات وتحليلات تقنية تحصل عليها لجلسات اللعب. المسؤولية الكاملة تقع على المستخدم في إدارة رأس ماله.
@@ -242,23 +283,18 @@
         <div class="contact-section">
             <div class="contact-title">قنوات التواصل والدعم الفني 💬</div>
             <div class="social-logos">
-                <!-- فيسبوك (شغال وموثق) -->
                 <a href="https://www.facebook.com/share/1CBdhvQwsS/" target="_blank" class="logo-item fb" title="فيسبوك">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <!-- واتساب (غير متاح حالياً) -->
                 <div class="logo-item wa" onclick="alert('⚠️ فريق العمل غير متاح حالياً عبر واتساب. يرجى التواصل عبر (فيسبوك) لإتمام التفعيل والتنشيط الفوري!')" title="واتساب">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <!-- تليجرام (غير متاح حالياً) -->
                 <div class="logo-item tg" onclick="alert('⚠️ فريق العمل غير متاح حالياً عبر تليجرام. يرجى التواصل عبر (فيسبوك) لإتمام التفعيل والتنشيط الفوري!')" title="تليجرام">
                     <i class="fab fa-telegram-plane"></i>
                 </div>
-                <!-- تويتر/إكس (غير متاح حالياً) -->
                 <div class="logo-item tw" onclick="alert('⚠️ فريق العمل غير متاح حالياً عبر تويتر. يرجى التواصل عبر (فيسبوك) لإتمام التفعيل والتنشيط الفوري!')" title="تويتر">
                     <i class="fab fa-twitter"></i>
                 </div>
-                <!-- إنستجرام (غير متاح حالياً) -->
                 <div class="logo-item ig" onclick="alert('⚠️ فريق العمل غير متاح حالياً عبر إنستجرام. يرجى التواصل عبر (فيسبوك) لإتمام التفعيل والتنشيط الفوري!')" title="إنستجرام">
                     <i class="fab fa-instagram"></i>
                 </div>
@@ -274,6 +310,29 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- بوت المساعد الذكي التفاعلي 🤖 -->
+<div class="ai-float-btn" onclick="toggleAIChat()" title="مساعد الدعم الذكي">
+    <i class="fas fa-robot"></i>
+</div>
+
+<div class="ai-chat-modal" id="ai-chat-modal">
+    <div class="ai-header">
+        <span>🤖 نظام الدعم الذكي الآلي</span>
+        <i class="fas fa-times" style="cursor: pointer;" onclick="toggleAIChat()"></i>
+    </div>
+    <div class="ai-body" id="ai-chat-body">
+        <div class="ai-msg bot">
+            مرحباً بك في مركز العمليات السيبراني ⚡<br>أنا المساعد الذكي للمنصة. اختر أحد الأسئلة أدناه للاستفسار فوراً:
+        </div>
+        <div class="ai-options" id="ai-options-box">
+            <button class="ai-opt-btn" onclick="handleAIQuestion(1)">1️⃣ أنا عميل جديد، كيف أبدأ؟</button>
+            <button class="ai-opt-btn" onclick="handleAIQuestion(2)">2️⃣ هل هناك خطورة على جهازي أو حسابي؟</button>
+            <button class="ai-opt-btn" onclick="handleAIQuestion(3)">3️⃣ هل سأقوم بالإيداع كل يوم للحصول على المحاولات؟</button>
+            <button class="ai-opt-btn" onclick="handleAIQuestion(4)">4️⃣ قسائم اللعب، الأكواد، والقنوات النشطة</button>
+        </div>
     </div>
 </div>
 
@@ -317,9 +376,10 @@
 
 <!-- قائمة الألعاب وتوقعات السيرفر -->
 <div id="screen-lobby" class="app-overlay" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 88%; max-width: 500px; margin-top: 5px;">
-        <h2 style="font-size: 1.1rem; color: #fff;">اختر لعبة التوقعات 🎮</h2>
-        <div id="global-attempts-hud" class="attempts-hud">🎮 المحاولات: 1</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 88%; max-width: 500px; margin-top: 18px; gap: 5px;">
+        <button class="back-btn" onclick="exitLobby()">🚪 خروج</button>
+        <h2 style="font-size: 1rem; color: #fff;">اختر اللعبة 🎮</h2>
+        <div id="global-attempts-hud" class="attempts-hud">🎮 المحاولات: 0</div>
     </div>
     
     <div class="live-matrix-feed" id="matrix-feed-text">
@@ -374,6 +434,7 @@
 
 <script>
     let userMode = 'new'; 
+    let isGuestMode = false;
 
     function selectUserType(type) {
         userMode = type;
@@ -408,6 +469,54 @@
     function saveDB(data) { localStorage.setItem(MASTER_KEY, JSON.stringify(data)); }
     let activeClientId = null;
 
+    // سكربت بوت الدعم الذكي التفاعلي
+    function toggleAIChat() {
+        let modal = document.getElementById('ai-chat-modal');
+        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function handleAIQuestion(qId) {
+        let chatBody = document.getElementById('ai-chat-body');
+        let qText = "";
+        let aText = "";
+
+        if (qId === 1) {
+            qText = "1️⃣ أنا عميل جديد، كيف أبدأ؟";
+            aText = `🔹 <b>خطوات الانضمام والتفعيل:</b><br>1. قم بتحميل المنصة من الرابط التالي:<br><a href="https://xp-aff.com/L?tag=d_5802115m_71587c_apk1&site=5802115&ad=71587" target="_blank" style="color:var(--neon-blue); word-break:break-all;">انقر هنا للتحميل 📥</a><br>2. استخدم كود التسجيل الإضافي: <b style="color:var(--neon-green);">G555</b><br>3. وبذلك أصبحت عميلاً معنا! للتفعيل الفوري، اشحن حسابك الشخصي وتواصل مع فريق الدعم عبر فيسبوك.`;
+        } else if (qId === 2) {
+            qText = "2️⃣ هل هناك خطورة على جهازي أو حسابي؟";
+            aText = `🛡️ <b>حماية سيبرانية مطلقة:</b><br>الموقع مؤمَّن بالكامل عبر بروتوكولات حماية متطورة وتشفير عالي المستوى بالتعاون مع جهات أمنية وأنظمة حماية سحابية كبرى (مثل Microsoft Cloud Shield & CyberDynamics Protocol V4)، ولا يوجد أي خطر على هاتفك أو حسابك الشخصي نهائياً.`;
+        } else if (qId === 3) {
+            qText = "3️⃣ هل سأقوم بالإيداع كل يوم للحصول على المحاولات؟";
+            aText = `🎁 <b>ليس إجبارياً يومياً:</b><br>لا يشترط الإيداع اليومي! يمكنك كسب محاولات مجانية عبر (نظام الإحالة) بدعوة أصدقائك للتسجيل وتفعيل حساباتهم. وإذا أردت طلب تنشيط مباشر، يشترط عمل إيداع رمزي لا يقل عن (20 جنيه) في حسابك الشخصي وإرسال الإثبات لفريق الدعم.`;
+        } else if (qId === 4) {
+            qText = "4️⃣ قسائم اللعب، الأكواد، والقنوات النشطة";
+            aText = `🎟️ <b>القسائم والأكواد الرسمية:</b><br>تواصل معنا عبر قنوات الدعم المتاحة (فيسبوك) واسأل فوراً عن القسائم الجاهزة أو القناة النشطة حالياً للحصول على هدايا إضافية لجلساتك!`;
+        }
+
+        // إضافة سؤال المستخدم والرد
+        chatBody.innerHTML += `<div class="ai-msg user">${qText}</div>`;
+        chatBody.innerHTML += `<div class="ai-msg bot">${aText}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // دخول جلسة الزيارة المقيدة
+    function enterGuestMode() {
+        isGuestMode = true;
+        activeClientId = null;
+        updateAttemptsHUD();
+        triggerRadarLoading(() => {
+            showScreen('screen-lobby');
+        });
+    }
+
+    function exitLobby() {
+        isGuestMode = false;
+        activeClientId = null;
+        document.getElementById('pass-input').value = "";
+        showScreen('screen-login');
+    }
+
     function handleAuthAction() {
         let val = document.getElementById('pass-input').value.trim();
         if(!val) return alert("يرجى إدخال الـ ID الخاص بك أولاً!");
@@ -428,7 +537,7 @@
             }
             
             localStorage.setItem(DEVICE_BIND_KEY, val);
-            
+            isGuestMode = false;
             activeClientId = val;
             updateAttemptsHUD();
             triggerRadarLoading(() => { showScreen('screen-lobby'); });
@@ -437,15 +546,15 @@
             db.requests[val] = { type: reqType, time: new Date().toLocaleTimeString() };
             saveDB(db);
 
-            if(userMode === 'new') {
-                alert(`🚨 تم تسجيل طلب التفعيل للـ ID: (${val}).\n\nمن فضلك تأكد من شحن (200 جنيه) في حسابك الشخصي على المنصة، ثم أرسل سكرين شوت الإيداع عبر زر فيسبوك ليتم تفعيل أداة التوقعات لك فوراً!`);
-            } else {
-                alert(`🔄 تم تسجيل طلب التنشيط اليومي للـ ID: (${val}).\n\nمن فضلك تأكد من شحن (20 جنيه) في حسابك الشخصي على المنصة، ثم أرسل الإثبات عبر فيسبوك لتجديد محاولاتك!`);
-            }
+            let depositAmount = (userMode === 'new') ? '200 جنيه' : '20 جنيه';
+            alert(`🚨 [بروتوكول التحقق الأمني المالي]:\n\nتم حجز الـ ID (${val}) بنجاح في قاعدة البيانات المؤقتة.\n\nنظراً لسياسات الأمان السيبراني لمنع البوتات، يرجى التأكد من شحن (${depositAmount}) في حسابك الشخصي على المنصة، ثم إرسال إثبات الإيداع إلى مركز العمليات المعتمد عبر (فيسبوك) ليقوم سيرفر الإشراف بتوليد مفتاح التشفير وتفعيل حسابك فوراً.`);
         }
     }
 
     function openReferralModal() {
+        if (isGuestMode) {
+            return alert("⛔ [صلاحيات مقيدة - حساب زيارة]:\n\nهذا حساب تجريبي للمعاينة فقط، وليس لديك تصريح لتوليد أو نشر روابط الإحالة.\n\nيرجى الخروج وتفعيل حسابك الأساسي لفتح نظام المكافآت!");
+        }
         showScreen('screen-referral');
         let currentUrl = window.location.href.split('?')[0];
         let refLink = activeClientId ? `${currentUrl}?ref=${activeClientId}` : `${currentUrl}?ref=VIP_GUEST`;
@@ -460,7 +569,11 @@
     }
 
     function deductAttempt() {
-        if (!activeClientId) return true;
+        if (isGuestMode) {
+            alert("🔒 [جلسة معاينة محدودة]:\n\nهذا حساب تجريبي للزيارة فقط (0 محاولة)، وليس لديك صلاحية تشغيل خوارزميات التوقع.\n\nاضغط على (خروج) بالأعلى وأدخل الـ ID الخاص بك لتفعيل الجلسة الحقيقية!");
+            return false;
+        }
+        if (!activeClientId) return false;
         let db = getDB();
         if (db.ids[activeClientId]) {
             if (db.ids[activeClientId].attempts > 0) {
@@ -474,7 +587,7 @@
                 return false;
             }
         }
-        return true;
+        return false;
     }
 
     function addClientId() {
@@ -533,11 +646,24 @@
     }
 
     function updateAttemptsHUD() {
+        let hudGlobal = document.getElementById('global-attempts-hud');
+        let hudGame = document.getElementById('game-attempts-hud');
+        
+        if (isGuestMode) {
+            hudGlobal.innerText = `👁️ وضع الزيارة (0)`;
+            hudGlobal.style.borderColor = '#ffaa00';
+            hudGlobal.style.color = '#ffaa00';
+            hudGame.innerText = `👁️ 0`;
+            return;
+        }
+
+        hudGlobal.style.borderColor = 'var(--neon-green)';
+        hudGlobal.style.color = 'var(--neon-green)';
         let db = getDB();
-        let att = 1;
+        let att = 0;
         if(activeClientId && db.ids[activeClientId]) { att = db.ids[activeClientId].attempts; }
-        document.getElementById('global-attempts-hud').innerText = `🎮 المحاولات: ${att}`;
-        document.getElementById('game-attempts-hud').innerText = `🎮 ${att}`;
+        hudGlobal.innerText = `🎮 المحاولات: ${att}`;
+        hudGame.innerText = `🎮 ${att}`;
     }
 
     const gamesNames = ["Apple 🍎", "Gems & Mines 💎", "Royal Feast 🍗", "Wild West Gold ⛏️"];
@@ -595,6 +721,7 @@
     function launchSelectedGame() {
         let currentGame = gamesList[currentCardIndex];
         if (!deductAttempt()) return;
+        
         triggerRadarLoading(() => {
             document.getElementById('active-game-title').innerText = currentGame.title;
             renderGameBoard(currentGame.id);
