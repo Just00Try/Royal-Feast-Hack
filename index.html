@@ -160,7 +160,7 @@
         }
         .investor-badge i { color: var(--neon-blue); font-size: 0.55rem; }
 
-        /* ستايل بوت الدعم الذكي */
+        /* ستايل بوت الدعم الذكي (خاص بشاشة تسجيل الدخول فقط) */
         .ai-float-btn {
             position: fixed; bottom: 20px; left: 20px; z-index: 1000;
             width: 50px; height: 50px; border-radius: 50%;
@@ -190,14 +190,11 @@
         .ai-opt-btn { background: rgba(3, 7, 18, 0.9); border: 1px solid var(--neon-green); color: var(--neon-green); padding: 6px 8px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; text-align: right; font-weight: bold; transition: 0.2s; }
         .ai-opt-btn:hover { background: rgba(0, 255, 102, 0.15); }
         
-        /* تأثير الوميض عند تكرار نفس السؤال */
         @keyframes answerFlash {
             0% { border-color: var(--neon-green); box-shadow: 0 0 20px var(--neon-green); background: rgba(0,255,102,0.2); }
             100% { border-color: var(--neon-blue); box-shadow: none; background: rgba(15, 23, 42, 0.9); }
         }
-        .flash-effect {
-            animation: answerFlash 0.6s ease;
-        }
+        .flash-effect { animation: answerFlash 0.6s ease; }
 
         .carousel-container { width: 100%; height: 230px; position: relative; display: flex; justify-content: center; align-items: center; margin-top: 2px; }
         .carousel-wheel { width: 190px; height: 210px; position: relative; }
@@ -266,7 +263,7 @@
     <span>⚡ [ CYBER VAULT PREDICTOR ONLINE ] &nbsp;&bull;&nbsp; [ خوارزميات التوقعات المباشرة نشطة بنسبة 98% 🟢 ]</span>
 </div>
 
-<!-- شاشة تسجيل الدخول -->
+<!-- شاشة تسجيل الدخول (البوت يظهر هنا فقط) -->
 <div id="screen-login" class="app-overlay">
     <div class="login-card">
         <h2>CYBER ACCESS 🔐</h2>
@@ -319,29 +316,28 @@
         </div>
 
     </div>
-</div>
 
-<!-- بوت المساعد الذكي التفاعلي 🤖 -->
-<div class="ai-float-btn" onclick="toggleAIChat()" title="مساعد الدعم الذكي">
-    <i class="fas fa-robot"></i>
-</div>
-
-<div class="ai-chat-modal" id="ai-chat-modal">
-    <div class="ai-header">
-        <span>🤖 نظام الدعم الذكي الآلي</span>
-        <i class="fas fa-times" style="cursor: pointer;" onclick="toggleAIChat()"></i>
+    <!-- زر البوت الذكي ونافذته موجودة داخل شاشة البداية فقط -->
+    <div class="ai-float-btn" onclick="toggleAIChat()" title="مساعد الدعم الذكي">
+        <i class="fas fa-robot"></i>
     </div>
-    <div class="ai-body" id="ai-chat-body">
-        <!-- صندوق الإجابة الثابت -->
-        <div class="ai-msg bot" id="ai-answer-box">
-            مرحباً بك في مركز العمليات السيبراني ⚡<br>اختر أحد الاستفسارات بالأسفل لعرض التفاصيل:
+
+    <div class="ai-chat-modal" id="ai-chat-modal">
+        <div class="ai-header">
+            <span>🤖 نظام الدعم الذكي الآلي</span>
+            <i class="fas fa-times" style="cursor: pointer;" onclick="toggleAIChat()"></i>
         </div>
-        
-        <div class="ai-options" id="ai-options-box">
-            <button class="ai-opt-btn" onclick="handleAIQuestion(1)">1️⃣ أنا عميل جديد، كيف أبدأ؟</button>
-            <button class="ai-opt-btn" onclick="handleAIQuestion(2)">2️⃣ هل هناك خطورة على جهازي أو حسابي؟</button>
-            <button class="ai-opt-btn" onclick="handleAIQuestion(3)">3️⃣ هل سأقوم بالإيداع كل يوم للحصول على المحاولات؟</button>
-            <button class="ai-opt-btn" onclick="handleAIQuestion(4)">4️⃣ قسائم اللعب، الأكواد، والقنوات النشطة</button>
+        <div class="ai-body" id="ai-chat-body">
+            <div class="ai-msg bot" id="ai-answer-box">
+                مرحباً بك في مركز العمليات السيبراني ⚡<br>اختر أحد الاستفسارات بالأسفل لعرض التفاصيل:
+            </div>
+            
+            <div class="ai-options" id="ai-options-box">
+                <button class="ai-opt-btn" onclick="handleAIQuestion(1)">1️⃣ أنا عميل جديد، كيف أبدأ؟</button>
+                <button class="ai-opt-btn" onclick="handleAIQuestion(2)">2️⃣ هل هناك خطورة على جهازي أو حسابي؟</button>
+                <button class="ai-opt-btn" onclick="handleAIQuestion(3)">3️⃣ هل سأقوم بالإيداع كل يوم للحصول على المحاولات؟</button>
+                <button class="ai-opt-btn" onclick="handleAIQuestion(4)">4️⃣ قسائم اللعب، الأكواد، والقنوات النشطة</button>
+            </div>
         </div>
     </div>
 </div>
@@ -384,7 +380,7 @@
     </div>
 </div>
 
-<!-- قائمة الألعاب وتوقعات السيرفر -->
+<!-- قائمة الألعاب وتوقعات السيرفر (بدون بوت نهائياً) -->
 <div id="screen-lobby" class="app-overlay" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center; width: 88%; max-width: 500px; margin-top: 18px; gap: 5px;">
         <button class="back-btn" onclick="exitLobby()">🚪 خروج</button>
@@ -445,7 +441,7 @@
 <script>
     let userMode = 'new'; 
     let isGuestMode = false;
-    let lastSelectedQ = null; // لتتبع السؤال الأخير
+    let lastSelectedQ = null;
 
     function selectUserType(type) {
         userMode = type;
@@ -480,7 +476,7 @@
     function saveDB(data) { localStorage.setItem(MASTER_KEY, JSON.stringify(data)); }
     let activeClientId = null;
 
-    // تشغيل بوت الدعم الذكي بنظام الإجابة المحدثة (تحديث مكان واحد + وميض عند التكرار)
+    // دوظة بوت الدعم الذكي
     function toggleAIChat() {
         let modal = document.getElementById('ai-chat-modal');
         modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
@@ -500,13 +496,11 @@
             aText = `🎟️ <b>القسائم والأكواد الرسمية:</b><br>تواصل معنا عبر قنوات الدعم المتاحة (فيسبوك) واسأل فوراً عن القسائم الجاهزة أو القناة النشطة حالياً للحصول على هدايا إضافية لجلساتك!`;
         }
 
-        // تحديث محتوى الإجابة في نفس الصندوق الثابت
         answerBox.innerHTML = aText;
 
-        // إذا ضغط على نفس السؤال مرة أخرى، نعمل تأثير الوميض (Flash) للتأكيد
         if (lastSelectedQ === qId) {
             answerBox.classList.remove('flash-effect');
-            void answerBox.offsetWidth; // إعادة تشغيل الـ Animation
+            void answerBox.offsetWidth;
             answerBox.classList.add('flash-effect');
         } else {
             answerBox.classList.remove('flash-effect');
@@ -515,7 +509,6 @@
         lastSelectedQ = qId;
     }
 
-    // دخول جلسة الزيارة المقيدة
     function enterGuestMode() {
         isGuestMode = true;
         activeClientId = null;
@@ -897,14 +890,14 @@
                     if(i !== mineStep) return;
                     let correct = winningPaths[i];
                     let boxes = row.querySelectorAll('.mine-box');
-                    for(let k=0; k<mineMode; k++)	{
+                    for(let k=0; k<mineMode; k++) {
                         boxes[k].onclick = null;
                         if(k === correct) { boxes[k].innerHTML = "🪙 ذهب"; boxes[k].style.background = "rgba(0,255,102,0.2)"; boxes[k].style.borderColor = "var(--neon-green)"; }
                         else { boxes[k].innerHTML = "🧨 ديناميت"; boxes[k].style.background = "rgba(255,0,85,0.2)"; boxes[k].style.borderColor = "var(--neon-pink)"; }
                     }
                     mineStep++;
                     if(mineStep < 6) {
-                        document.getElementById('mine-step').innerText = mineBox ? mineStep + 1 : mineStep + 1;
+                        document.getElementById('mine-step').innerText = mineStep + 1;
                         let nextRow = document.getElementById(`mine-row-${mineStep}`);
                         if(nextRow) {
                             nextRow.classList.add('active');
